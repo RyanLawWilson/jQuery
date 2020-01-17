@@ -23,11 +23,14 @@
                             <p id='2'>Paragraph 2</p>\
                             <p id='3'>Paragraph 3</p>\
                             <p id='4'>Use arrow keys up and down to cycle my colors!<br>Use left and right to change my size!</p>\
+                            <p id='msg'>Text is hidden, click again to show!</p>\
                         </div>\
                     </div>\
                 </body>"
             );
-
+            $("#msg").css({"color":"#0FE4C4"});
+            $("#msg").hide();
+            
             //Use # to specify Ids in jQuery
             $("#2").css({"color":"red"});
 
@@ -36,9 +39,14 @@
             });
 
 
+            
+
+
             var colors = ["black","red","green","blue","pink","purple"];
             var colorIndex = 0;
             var size = 16;
+
+            //Changes text based on arrow key presses
             $("html").keydown(function(event) {                
                 //The key code for up arrow
                 if (event.keyCode == 38) {
@@ -56,18 +64,36 @@
 
                 //The left arrow key
                 else if(event.keyCode == 37) {
-                    if (size > 6) {size--;}
+                    if (size > 6) {size--;}     //Min size is 6px;
                     $("#4").css({"font-size":size+"px"});
                 }
 
                 //The right arrow key
                 else if(event.keyCode == 39) {
-                    if (size < 64) {size++;}
+                    if (size < 64) {size++;}    //Max size is 64px
                     $("#4").css({"font-size":size+"px"});
                 }
                 
                 //console.log(size);
                 //console.log("ColorIndex: " + colorIndex + " | color: " + colors[colorIndex]);
+            });
+
+            var visible = true;
+
+            // Hides paragraph when clicked
+            $("#4").click(function() {
+                //If text is visible, slideup and show message
+                if (visible) {
+                    $("#4").slideUp("slow", function() { $("#msg").show(); });
+                    visible = false;
+                }
+            });
+
+            $("#msg").click(function() {
+                //If text is invisible, slidedown and hide message
+                $("#msg").hide()
+                $("#4").slideDown("slow");
+                visible = true;
             });
         });
     </script>
