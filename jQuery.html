@@ -19,13 +19,56 @@
                     <div id='container'>\
                         <div id='inner'>\
                             <h1>Basic jQuery</h1>\
-                            <p>Paragraph 1</p>\
-                            <p>Paragraph 2</p>\
-                            <p>Paragraph 3</p>\
+                            <p id='1'>Paragraph 1</p>\
+                            <p id='2'>Paragraph 2</p>\
+                            <p id='3'>Paragraph 3</p>\
+                            <p id='4'>Use arrow keys up and down to cycle my colors!<br>Use left and right to change my size!</p>\
                         </div>\
                     </div>\
                 </body>"
-            );  
+            );
+
+            //Use # to specify Ids in jQuery
+            $("#2").css({"color":"red"});
+
+            $("#3").click(function() {
+                $("h1").hide();
+            });
+
+
+            var colors = ["black","red","green","blue","pink","purple"];
+            var colorIndex = 0;
+            var size = 16;
+            $("html").keydown(function(event) {                
+                //The key code for up arrow
+                if (event.keyCode == 38) {
+                    //End of the colors array?  Start at the beginning, else, add 1 to the index.
+                    colorIndex = (colorIndex == (colors.length - 1)) ? colorIndex = 0 : colorIndex + 1;
+                    $("#4").css({"color":colors[colorIndex]});
+                } 
+                
+                //The key code for down arrow
+                else if (event.keyCode == 40) {
+                    //Beginning of the colors array?  Start at the end, else, subtract 1 to the index.
+                    colorIndex = (colorIndex == 0) ? colorIndex = colors.length-1 : colorIndex - 1;
+                    $("#4").css({"color":colors[colorIndex]});
+                }
+
+                //The left arrow key
+                else if(event.keyCode == 37) {
+                    if (size > 6) {size--;}
+                    $("#4").css({"font-size":size+"px"});
+                }
+
+                //The right arrow key
+                else if(event.keyCode == 39) {
+                    if (size < 64) {size++;}
+                    $("#4").css({"font-size":size+"px"});
+                }
+                
+                //console.log(size);
+                //console.log("ColorIndex: " + colorIndex + " | color: " + colors[colorIndex]);
+            });
         });
     </script>
 </html>
