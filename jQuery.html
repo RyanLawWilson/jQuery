@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Beggining jQuery</title>
+        <meta charset = "utf-8">
+        
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="">
+	</head>
+		
+        
+    <script>
+        // Use jQuery() to target DOM object.  Or just use $
+        $(document).ready(function() {
+            // The \ tells JS to continue to the next line
+            $("html").append(
+                "<body>\
+                    <div id='container'>\
+                        <div id='inner'>\
+                            <h1>Basic jQuery</h1>\
+                            <p>Paragraph 1</p>\
+                            <p>Paragraph 2</p>\
+                            <p>Paragraph 3</p>\
+                        </div>\
+                    </div>\
+                </body>"
+            );  
+        });
+    </script>
+</html>
